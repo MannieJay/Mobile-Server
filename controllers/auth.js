@@ -4,7 +4,7 @@ const getTokenForUser = require('../services/token');
 const signIn = (req, res) => {
   res.send({
     token: getTokenForUser(req.user),
-    user: req.user, 
+    user: req.user,
   });
 };
 

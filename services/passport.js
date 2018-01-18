@@ -10,7 +10,7 @@ const localOptions = {
 };
 
 const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
-	email = email.toLowerCase();
+  email = email.toLowerCase();
   User.findOne({ email }, (err, user) => {
     if (err) return done(err);
     if (!user) return done(null, false);
