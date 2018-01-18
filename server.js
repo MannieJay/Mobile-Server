@@ -5,7 +5,7 @@ const cors = require('cors');
 const port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/TodoSchema');
+mongoose.connect('mongodb://honey:honey123@ds119064.mlab.com:19064/todoschema');
 
 const app = express();
 app.use(bodyParser.json());
