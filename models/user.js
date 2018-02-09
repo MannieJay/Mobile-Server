@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const TodoSchema = require('./todo');
+const GrantSchema = require('./grant');
 
 const UserSchema = mongoose.Schema({
   email: {
@@ -14,16 +15,9 @@ const UserSchema = mongoose.Schema({
       }
     }
   },
-  jointemail: {
-    type: String,
-    unique: true,
-    lowercase: true,
-    validate: {
-      validator: (email) => {
-        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-      }
-    }
-  },
+  grantemail: [
+    GrantSchema
+  ],
   password: {
     type: String,
     required: true,
