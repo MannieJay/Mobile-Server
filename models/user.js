@@ -14,6 +14,16 @@ const UserSchema = mongoose.Schema({
       }
     }
   },
+  jointemail: {
+    type: String,
+    unique: true,
+    lowercase: true,
+    validate: {
+      validator: (email) => {
+        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+      }
+    }
+  },
   password: {
     type: String,
     required: true,
@@ -23,8 +33,8 @@ const UserSchema = mongoose.Schema({
   ],
 });
 
-UserSchema.pre('save', function(next) {
-	if (!this.isModified('password')) return next();
+UserSchema.pre('save', function (next) {
+  if (!this.isModified('password')) return next();
   // generate the salt
   bcrypt.genSalt(10, (err, salt) => {
     if (err) return next(err);
@@ -37,7 +47,7 @@ UserSchema.pre('save', function(next) {
   });
 });
 
-UserSchema.methods.checkPassword = function(potentialPassword, cb) {
+UserSchema.methods.checkPassword = function (potentialPassword, cb) {
   bcrypt.compare(potentialPassword, this.password, (err, isMatch) => {
     if (err) return cb(err);
     cb(null, isMatch);
