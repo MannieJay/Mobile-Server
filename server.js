@@ -14,7 +14,7 @@ app.use(cors());
 require('./controllers')(app);
 
 app.get('/', (req, res) => {
-  res.send('hello world!');
+  res.send('Connection established!');
 });
 
 app.listen(port, (req, res) => {
