@@ -35,8 +35,7 @@ const grantUser = (req, res) => {
   let checkemail = req.body.email;
   models.User.find({}, (err, users) => {
     if (err) return res.send(err);
-    if users[0].grantemail.includes(checkemail);
-    return res.sendStatus(409);
+    if (users[0].grantemail.includes(checkemail)) return res.sendStatus(409);
   });
   req.user.grantemail.push(checkemail);
   req.user.save((err, user) => {
