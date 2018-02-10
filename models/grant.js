@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const GrantSchema = mongoose.Schema({
   email: {
-    type: String,
+    type: [String],
     unique: true,
     lowercase: true,
     required: true,

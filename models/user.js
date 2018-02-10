@@ -15,9 +15,7 @@ const UserSchema = mongoose.Schema({
       }
     }
   },
-  grantemail: [
-    GrantSchema
-  ],
+  grantemail: [String],
   password: {
     type: String,
     required: true,

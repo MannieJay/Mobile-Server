@@ -27,14 +27,22 @@ const getUser = (req, res) => {
   res.send(req.user);
 };
 
+const searchEmail = () => {
+  return models.User.find({ grantemail: { $exists: true } });
+}
+
 const grantUser = (req, res) => {
-  let grantemail = req.body.email;
-  console.log(grantemail);
-  req.user.grantemail.push(grantemail);
+  let checkemail = req.body.email;
+  models.User.find({}, (err, users) => {
+    if (err) return res.send(err);
+    if users[0].grantemail.includes(checkemail);
+    return res.sendStatus(409);
+  });
+  req.user.grantemail.push(checkemail);
   req.user.save((err, user) => {
     if (err) {
       return res.send(err);
-      console.log('error saveing grantemail', err);
+      console.log('error saving grantemail', err);
     } else {
       res.sendStatus(200);
     }
