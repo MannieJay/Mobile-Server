@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const TodoSchema = require('./todo');
-const GrantSchema = require('./grant');
 
 const UserSchema = mongoose.Schema({
   email: {
